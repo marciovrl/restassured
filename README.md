@@ -1,15 +1,15 @@
 # example-restassured
 Example of how to simply use Restassured and test in an API.
 
-s/Ese repositório tem como objetivo ser meu campo de treinamento e estudo de RestAssured. (ad infinitum em construção... ).
+Esse repositório tem como objetivo ser meu campo de treinamento e estudo de RestAssured. (ad infinitum em construção... ).
 
-Peguei a API `https://jsonplaceholder.typicode.com` e desenvolvi a automação do endpoint `/posts` testando os verbos/chamadas e o contrato.
+Foi contruidos testes de serviço com `junit` e com `cucumber` para o endpoint `/posts` da API `https://jsonplaceholder.typicode.com`.
 
-# Pre-requisitos
+# Pré-requisitos
 - Java instalado e configurado;
 - Maven instalado e configurado.
 
-# Utiliar esse projeto como exemplo
+# Rodar os testes
 - Clonar projeto:
 ```
 git clone https://github.com/marciovrl/example-restassured.git
@@ -20,62 +20,34 @@ git clone https://github.com/marciovrl/example-restassured.git
 mvn install
 ```
 
-- Para executar os testes:
+- Para executar os testes de forma unitária:
 ```
-mvn -DtestSourceDirectory=src/test/java/com/exmaple/steps/test clean test
-```
-
-# Iniciar projeto do zero
-- Gerar estrutura do projeto Maven
-```
-mvn archetype:generate
+mvn -DtestSourceDirectory=src/test/java/com/example/steps/test clean test
 ```
 
-- Procurar as seguintes depencias em `https://mvnrepository.com` e adicionar no arquivo `pom.xml`.
+- Para executar os testes com cucumber:
 ```
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-</dependency>
+mvn clean -Dtest=CucumberTest test
 ```
-
-```
-<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>rest-assured</artifactId>
-</dependency>
-```
-
-```
-<dependency>
-    <groupId>com.jayway.restassured</groupId>
-    <artifactId>rest-assured</artifactId>
-</dependency>
-```
-
-```
-<dependency>
-    <groupId>org.hamcrest</groupId>
-    <artifactId>hamcrest-all</artifactId>
-</dependency>
-```
-
-- Agora só estruturar e escrever os testes!
 
 # Estrutura do projeto
 ```
 |
 | - src
-    | - java
-        | - com
-            | example
-                | - steps
+    | - test
+        | - features
+            | - `Example.feature`
+        | - java
+            | com
+                | - example
+                    | - steps
+                    | - definitions
+                        | - `cucumberStepTest.java`
                     | - test
-                        | - test
-                            | - `ArquivoTeste.java`
+                        | - `unitTest.java`
+                    | - support
+                            | - `CucumberTest.java`
 | - `.gitignore`
 | - `pom.xml`  
 | - `README.md`  
 ```
-endpoint https://jsonplaceholder.typicode.com/posts
-
