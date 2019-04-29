@@ -8,9 +8,11 @@
   <name>restassured</name>
   <url>http://maven.apache.org</url>
   
-  <developer>
-    <name>Márcio Lemos</name>
-  </developer>
+  <developers>
+    <developer>
+      <name>Márcio Lemos</name>
+    </developer>
+  </developers>
 
   <dependencies>
 
