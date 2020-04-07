@@ -1,20 +1,20 @@
-package com.example.steps.test;
+package com.example;
 
 import io.restassured.RestAssured;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
-public class PostsTest {
+public class AppTest {
     
     @BeforeClass
     public static void setUp() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com/posts";
     }
 
-	@Test
+    @Test
     public void validateGetReturn() {
         given().
             contentType("application/json").
