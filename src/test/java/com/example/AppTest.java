@@ -11,7 +11,7 @@ public class AppTest {
     
     @BeforeClass
     public static void setUp() {
-        RestAssured.baseURI = "https://jsonplaceholder.typicode.com/posts";
+        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
     }
 
     @Test
@@ -19,7 +19,7 @@ public class AppTest {
         given().
             contentType("application/json").
         when().
-            get("/").
+            get("/posts").
         then().
             statusCode(200);
     }
@@ -30,7 +30,7 @@ public class AppTest {
             contentType("application/json").
             body("{\"title\":\"Testing\", \"body\":\"Testing API example\"}").
         when().
-            post("/").
+            post("/posts").
         then().
             statusCode(201).
             body("title", is("Testing"));
@@ -41,8 +41,9 @@ public class AppTest {
         given().
             contentType("application/json").
             body("{\"title\":\"New Testing\"}").
+            pathParam("id", 1).
         when().
-            put("/1").
+            put("posts/{id}").
         then().
             statusCode(200).
             body("title", is("New Testing"));
@@ -52,10 +53,10 @@ public class AppTest {
     public void validateDeleteReturn() {
         given().
             contentType("application/json").
+            pathParam("id", 1).
         when().
-            delete("/1").
+            delete("posts/{id}").
         then().
             statusCode(200);
     }
-
 }
