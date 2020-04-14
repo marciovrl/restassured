@@ -1,11 +1,15 @@
 package com.example;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
+
+import java.util.Map;
+import java.util.HashMap;
 
 public class AppTest {
     
@@ -17,7 +21,7 @@ public class AppTest {
     @Test
     public void validateGetReturn() {
         given().
-            contentType("application/json").
+            contentType(ContentType.JSON).
         when().
             get("/posts").
         then().
@@ -26,9 +30,13 @@ public class AppTest {
 
     @Test
     public void validatePostReturn() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("title", "Testing");
+        params.put("body", "Testing API example");
+
         given().
-            contentType("application/json").
-            body("{\"title\":\"Testing\", \"body\":\"Testing API example\"}").
+            contentType(ContentType.JSON).
+            body(params).
         when().
             post("/posts").
         then().
@@ -38,9 +46,12 @@ public class AppTest {
 
     @Test
     public void validatePutReturn() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("title", "New Testing");
+
         given().
-            contentType("application/json").
-            body("{\"title\":\"New Testing\"}").
+            contentType(ContentType.JSON).
+            body(params).
             pathParam("id", 1).
         when().
             put("posts/{id}").
@@ -52,7 +63,7 @@ public class AppTest {
     @Test
     public void validateDeleteReturn() {
         given().
-            contentType("application/json").
+            contentType(ContentType.JSON).
             pathParam("id", 1).
         when().
             delete("posts/{id}").
