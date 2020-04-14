@@ -1,6 +1,7 @@
 package com.example;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ public class AppTest {
     @Test
     public void validateGetReturn() {
         given().
-            contentType("application/json").
+            contentType(ContentType.JSON).
         when().
             get("/posts").
         then().
@@ -34,7 +35,7 @@ public class AppTest {
         params.put("body", "Testing API example");
 
         given().
-            contentType("application/json").
+            contentType(ContentType.JSON).
             body(params).
         when().
             post("/posts").
@@ -49,7 +50,7 @@ public class AppTest {
         params.put("title", "New Testing");
 
         given().
-            contentType("application/json").
+            contentType(ContentType.JSON).
             body(params).
             pathParam("id", 1).
         when().
@@ -62,7 +63,7 @@ public class AppTest {
     @Test
     public void validateDeleteReturn() {
         given().
-            contentType("application/json").
+            contentType(ContentType.JSON).
             pathParam("id", 1).
         when().
             delete("posts/{id}").
