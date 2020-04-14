@@ -7,6 +7,9 @@ import org.junit.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import java.util.Map;
+import java.util.HashMap;
+
 public class AppTest {
     
     @BeforeClass
@@ -26,9 +29,13 @@ public class AppTest {
 
     @Test
     public void validatePostReturn() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("title", "Testing");
+        params.put("body", "Testing API example");
+
         given().
             contentType("application/json").
-            body("{\"title\":\"Testing\", \"body\":\"Testing API example\"}").
+            body(params).
         when().
             post("/posts").
         then().
@@ -38,9 +45,12 @@ public class AppTest {
 
     @Test
     public void validatePutReturn() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("title", "New Testing");
+
         given().
             contentType("application/json").
-            body("{\"title\":\"New Testing\"}").
+            body(params).
             pathParam("id", 1).
         when().
             put("posts/{id}").
