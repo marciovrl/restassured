@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -25,7 +26,8 @@ public class AppTest {
         when().
             get("/posts").
         then().
-            statusCode(200);
+            statusCode(200).
+            body(matchesJsonSchemaInClasspath("posts.json"));
     }
 
     @Test
