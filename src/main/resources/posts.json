@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/product.schema.json",
+  "title": "Posts",
+  "description": "example",
+  "type": "array",
+  "items": {
+    "title": "Post",
+    "type": "object",
+    "properties": {
+      "userId": {
+        "description": "The unique identifier for a user",
+        "type": "integer"
+      },
+      "id": {
+        "description": "The unique identifier for a post",
+        "type": "integer"
+      },
+      "title": {
+        "description": "The title of the post",
+        "type": "string"
+      },
+      "body": {
+        "description": "The body of the post",
+        "type": "string"
+      }
+    },
+    "required": ["id", "title", "body"]
+  }
+}
