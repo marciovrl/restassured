@@ -16,4 +16,4 @@ git clone https://github.com/marciovrl/example-restassured.git
 
 ### `make help`
 
-# Displays all options for the project's make commands.
+Displays all options for the project's make commands.
