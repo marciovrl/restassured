@@ -1,28 +1,20 @@
 package com.example;
 
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-
 import java.util.Map;
 import java.util.HashMap;
 
-public class AppTest {
-    
-    @BeforeClass
-    public static void setUp() {
-        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
-    }
+import static io.restassured.RestAssured.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.*;
+
+import com.example.BaseTest;
+
+public class AppTest extends BaseTest {
 
     @Test
     public void validateGetReturn() {
         given().
-            contentType(ContentType.JSON).
         when().
             get("/posts").
         then().
@@ -37,7 +29,6 @@ public class AppTest {
         params.put("body", "Testing API example");
 
         given().
-            contentType(ContentType.JSON).
             body(params).
         when().
             post("/posts").
@@ -52,7 +43,6 @@ public class AppTest {
         params.put("title", "New Testing");
 
         given().
-            contentType(ContentType.JSON).
             body(params).
             pathParam("id", 1).
         when().
@@ -65,11 +55,12 @@ public class AppTest {
     @Test
     public void validateDeleteReturn() {
         given().
-            contentType(ContentType.JSON).
+            log().all().
             pathParam("id", 1).
         when().
             delete("posts/{id}").
         then().
+        log().all().
             statusCode(200);
     }
 }
