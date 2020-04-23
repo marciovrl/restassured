@@ -28,5 +28,7 @@ public class BaseTest implements BaseAPI{
         ResponseSpecBuilder resBuilder = new ResponseSpecBuilder();
         resBuilder.expectResponseTime(Matchers.lessThan(MAX_TIMEOUT));
         RestAssured.responseSpecification = resBuilder.build();
+
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
     }
 }
