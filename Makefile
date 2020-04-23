@@ -6,4 +6,4 @@ help:
 
 .PHONY: test
 test: ## Execute the tests
-	mvn -DtestSourceDirectory=src/test/java/example clean test
+	mvn -DtestSourceDirectory=src/test/java/com/example/BaseTest.java clean test
