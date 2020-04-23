@@ -55,12 +55,10 @@ public class AppTest extends BaseTest {
     @Test
     public void validateDeleteReturn() {
         given().
-            log().all().
             pathParam("id", 1).
         when().
             delete("posts/{id}").
         then().
-        log().all().
             statusCode(200);
     }
 }
