@@ -8,9 +8,9 @@ import static io.restassured.RestAssured.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.*;
 
-import com.example.BaseTest;
+import com.example.BaseAPI;
 
-public class AppTest extends BaseTest {
+public class AppTest extends BaseAPI {
 
     @Test
     public void validateGetReturn() {
@@ -55,12 +55,11 @@ public class AppTest extends BaseTest {
     @Test
     public void validateDeleteReturn() {
         given().
-            log().all().
             pathParam("id", 1).
         when().
             delete("posts/{id}").
         then().
-        log().all().
             statusCode(200);
     }
+    
 }
