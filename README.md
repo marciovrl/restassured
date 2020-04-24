@@ -9,7 +9,7 @@ Example of testing and validating REST services in Java with REST-assured.
 - Clone repository:
 
 ```
-git clone https://github.com/marciovrl/example-restassured.git
+https://github.com/marciovrl/restassured-example.git
 ```
 
 # Run
