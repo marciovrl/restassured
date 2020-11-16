@@ -12,6 +12,12 @@ import com.example.BaseAPI;
 
 public class AppTest extends BaseAPI {
 
+    /*******************************************************
+	 * Send a GET request to /posts
+	 * and check that the response has HTTP status code 200
+     * and check that the response is in JSON schema
+	 ******************************************************/
+
     @Test
     public void validateGetReturn() {
         given().
@@ -21,6 +27,12 @@ public class AppTest extends BaseAPI {
             statusCode(200).
             body(matchesJsonSchemaInClasspath("posts.json"));
     }
+
+    /*******************************************************
+	 * Send a POST request to /posts
+	 * and check that the response has HTTP status code 201
+     * the title in body returned is equal to 'Testing'
+	 ******************************************************/
 
     @Test
     public void validatePostReturn() {
@@ -37,6 +49,12 @@ public class AppTest extends BaseAPI {
             body("title", is("Testing"));
     }
 
+    /*******************************************************
+	 * Send a PUT request to /posts/{id}
+	 * and check that the response has HTTP status code 200
+     * the title in body returned is equal to 'New Testing'
+	 ******************************************************/
+
     @Test
     public void validatePutReturn() {
         Map<String, Object> params = new HashMap<String, Object>();
@@ -51,6 +69,11 @@ public class AppTest extends BaseAPI {
             statusCode(200).
             body("title", is("New Testing"));
     }
+
+    /*******************************************************
+	 * Send a DELETE request to /posts/{id}
+	 * and check that the response has HTTP status code 200
+	 ******************************************************/
 
     @Test
     public void validateDeleteReturn() {
